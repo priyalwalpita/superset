@@ -311,6 +311,40 @@ def test_list_page_size_below_one_is_floored():
     mock_query.limit.assert_called_once_with(1)
 
 
+def _list_with_page(page: int) -> Mock:
+    """
+    Run ``BaseDAO.list`` with a mocked query chain and return the mock query so
+    the ``.offset()`` call (page * page_size) can be inspected.
+    """
+    mock_query = Mock()
+    # Every chainable call returns the same mock so the chain is easy to inspect
+    mock_query.options.return_value = mock_query
+    mock_query.filter.return_value = mock_query
+    mock_query.order_by.return_value = mock_query
+    mock_query.offset.return_value = mock_query
+    mock_query.limit.return_value = mock_query
+    mock_query.count.return_value = 0
+    mock_query.all.return_value = []
+
+    mock_data_model = Mock()
+    mock_data_model.session.query.return_value = mock_query
+
+    with (
+        patch("superset.daos.base.SQLAInterface", return_value=mock_data_model),
+        patch.object(TestDAO, "_apply_base_filter", side_effect=lambda q, **_: q),
+    ):
+        TestDAO.list(page=page, page_size=1)
+
+    return mock_query
+
+
+def test_list_negative_page_is_floored():
+    """A negative page is floored to 0 so OFFSET is never negative."""
+    mock_query = _list_with_page(-3)
+
+    mock_query.offset.assert_called_once_with(0)
+
+
 def test_like_operators_none_value_matches_no_rows() -> None:
     """A ``None`` value on a LIKE-family operator must match no rows.
 
