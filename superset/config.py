@@ -840,6 +840,11 @@ DEFAULT_FEATURE_FLAGS: dict[str, bool] = {
     # @lifecycle: stable
     # @category: runtime_config
     "CACHE_QUERY_BY_USER": False,
+    # Shows a confirmation dialog listing conflicting properties when overwriting a
+    # dashboard that changed since it was loaded.
+    # @lifecycle: stable
+    # @category: runtime_config
+    "CONFIRM_DASHBOARD_DIFF": False,
     # Enables CSS Templates in Settings menu and dashboard forms
     # @lifecycle: stable
     # @category: runtime_config
