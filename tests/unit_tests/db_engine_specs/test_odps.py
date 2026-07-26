@@ -84,6 +84,45 @@ def test_odps_engine_spec_select_star_with_partition() -> None:
     assert "WHERE" in sql
 
 
+def test_odps_engine_spec_select_star_show_cols() -> None:
+    """select_star with show_cols=True lists the columns explicitly."""
+    database = MagicMock()
+    database.backend = "odps"
+    database.compile_sqla_query = lambda query, catalog, schema: str(
+        query.compile(dialect=sqlite.dialect())
+    )
+    dialect = sqlite.dialect()
+
+    sql = OdpsEngineSpec.select_star(
+        database=database,
+        table=Table("my_table", None, None),
+        dialect=dialect,
+        limit=100,
+        show_cols=True,
+        indent=False,
+        latest_partition=False,
+        cols=[
+            {
+                "column_name": "col_a",
+                "name": "col_a",
+                "type": "STRING",
+                "is_dttm": False,
+            },
+            {
+                "column_name": "col_b",
+                "name": "col_b",
+                "type": "STRING",
+                "is_dttm": False,
+            },
+        ],
+        partition=None,
+    )
+
+    assert "col_a" in sql
+    assert "col_b" in sql
+    assert "my_table" in sql
+
+
 def test_is_odps_partitioned_table_non_odps_backend() -> None:
     """Returns (False, []) immediately for non-ODPS databases; no network call made."""
     database = MagicMock()

@@ -165,7 +165,8 @@ class OdpsEngineSpec(BasicParametersMixin, OdpsBaseEngineSpec):
         if show_cols:
             fields = cls._get_fields(cols)
         full_table_name = cls.quote_table(table, dialect)
-        qry = select(fields).select_from(text(full_table_name))
+        columns_clause = fields if isinstance(fields, list) else [fields]
+        qry = select(*columns_clause).select_from(text(full_table_name))
         if database.backend == "odps":
             if (
                 partition is not None
