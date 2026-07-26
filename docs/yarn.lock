@@ -3360,10 +3360,10 @@
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-8.6.17.tgz#074930ccfc9ce4a6d798f274819b70d2852f0fbe"
   integrity sha512-3uwPYVia6MdyeTI2oq46ybpFIZCCjohvzI7zn6NmnRqC8WvZapngLY6OT590eFCrFdgxMszKORUvSsPgtjpnuA==
 
-"@storybook/client-logger@^8.6.17":
-  version "8.6.17"
-  resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-8.6.17.tgz#43decc0f507dd7daf9310994fd612b25fc6915a5"
-  integrity sha512-l8vbDNyyR9YfWZzlsupxEeekA/eq4iibBo3gWwr+2G5QfNTGveTQdpgr2m5IL5k+Xjnii22AepmQ4NdjPbJXwA==
+"@storybook/client-logger@^8.6.18":
+  version "8.6.18"
+  resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-8.6.18.tgz#21b95c5ecb30475ad5a1fa68c0af603a4199c01b"
+  integrity sha512-l7x3KkumMcTN+R1ozAqEyAkHpNBonIvicYoTgha/3Dh/tKiBYLLum2AEXbiu0TBJ7EEUfi4AG7eOBBfVdfWqvQ==
 
 "@storybook/components@^8.6.17":
   version "8.6.17"
