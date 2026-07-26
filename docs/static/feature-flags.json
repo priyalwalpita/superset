@@ -257,6 +257,13 @@
         "category": "runtime_config"
       },
       {
+        "name": "CONFIRM_DASHBOARD_DIFF",
+        "default": false,
+        "lifecycle": "stable",
+        "description": "Shows a confirmation dialog listing conflicting properties when overwriting a dashboard that changed since it was loaded.",
+        "category": "runtime_config"
+      },
+      {
         "name": "CSS_TEMPLATES",
         "default": true,
         "lifecycle": "stable",

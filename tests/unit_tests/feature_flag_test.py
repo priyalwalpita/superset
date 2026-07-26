@@ -14,9 +14,23 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+import re
+from pathlib import Path
+
 from pytest_mock import MockerFixture
 
 from superset import is_feature_enabled
+from superset.config import DEFAULT_FEATURE_FLAGS
+
+FEATURE_FLAGS_TS = (
+    Path(__file__).parents[2]
+    / "superset-frontend"
+    / "packages"
+    / "superset-ui-core"
+    / "src"
+    / "utils"
+    / "featureFlags.ts"
+)
 
 
 def dummy_is_feature_enabled(feature_flag_name: str, default: bool = True) -> bool:
@@ -63,3 +77,17 @@ def test_is_feature_enabled(mocker: MockerFixture) -> None:
     assert is_feature_enabled("True_Flag2") is True
     assert is_feature_enabled("Flag3") is False
     assert is_feature_enabled("Flag4") is True
+
+
+def test_frontend_enum_declared_in_default_feature_flags() -> None:
+    """
+    Test that every ``FeatureFlag`` enum member has a backend counterpart.
+    """
+    source = FEATURE_FLAGS_TS.read_text()
+    enum_body = re.search(r"export enum FeatureFlag \{(.+?)\n\}", source, re.DOTALL)
+    assert enum_body, f"Could not find the FeatureFlag enum in {FEATURE_FLAGS_TS}"
+
+    flags = set(re.findall(r"^\s*\w+ = '([A-Z0-9_]+)',$", enum_body.group(1), re.M))
+    assert flags, f"Could not parse any flags from the enum in {FEATURE_FLAGS_TS}"
+
+    assert not flags - set(DEFAULT_FEATURE_FLAGS)

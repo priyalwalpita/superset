@@ -57,10 +57,8 @@ export enum FeatureFlag {
   GranularExportControls = 'GRANULAR_EXPORT_CONTROLS',
   ListviewsDefaultCardView = 'LISTVIEWS_DEFAULT_CARD_VIEW',
   Matrixify = 'MATRIXIFY',
-  ScheduledQueries = 'SCHEDULED_QUERIES',
   SemanticLayers = 'SEMANTIC_LAYERS',
   SqllabBackendPersistence = 'SQLLAB_BACKEND_PERSISTENCE',
-  SqlValidatorsByEngine = 'SQL_VALIDATORS_BY_ENGINE',
   SshTunneling = 'SSH_TUNNELING',
   TaggingSystem = 'TAGGING_SYSTEM',
   Thumbnails = 'THUMBNAILS',
@@ -85,9 +83,7 @@ export type ScheduleQueriesProps = {
   };
 };
 export type FeatureFlagMap = {
-  [key in Exclude<FeatureFlag, FeatureFlag.ScheduledQueries>]?: boolean;
-} & {
-  ScheduledQueries?: ScheduleQueriesProps;
+  [key in FeatureFlag]?: boolean;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
