@@ -3370,10 +3370,10 @@
   resolved "https://registry.yarnpkg.com/@storybook/components/-/components-8.6.17.tgz#67c87f4a5b98999c81f17418cbe2396e6dd216f1"
   integrity sha512-0b8xkkuPCNbM8LTOzyfxuo2KdJCHIfu3+QxWBFllXap0eYNHwVeSxE5KERQ/bk2GDCiRzaUbwH9PeLorxOzJJQ==
 
-"@storybook/core-events@^8.6.17":
-  version "8.6.17"
-  resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-8.6.17.tgz#e67d6308e61cd6d7be574c40c605eafe7bb04c74"
-  integrity sha512-HiKVE2sSbJF6PVFt2DfJtLef1Mc35cN+sf2f8Ay2ibHy2gY1t3/7W1PhYVGt7UpJNOnVZfsmcE3yqGNojct3mw==
+"@storybook/core-events@^8.6.18":
+  version "8.6.18"
+  resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-8.6.18.tgz#aaaf2a544fdb07036a08200692bb88a96d9df651"
+  integrity sha512-eUVwrcppny/ZYyke/SPVZVuco8wxkQ/0K20nlevSiDkgWZSELii5Ju0/l9Ubnopr9dshoFCYbC7q6liTSpok7A==
 
 "@storybook/core@8.6.17", "@storybook/core@^8.6.17":
   version "8.6.17"
